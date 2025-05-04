@@ -12,3 +12,22 @@ A simple command-line tool to find and optionally remove duplicate files in your
 - 🔧 Filter by file size and extension
 - 🧪 Dry-run mode to preview what would be deleted
 - 📊 Show wasted disk space statistics
+
+## 🚀 Installation
+
+1. Clone this repository:
+```bash
+git clone https://github.com/yourusername/file-duplicate-finder.git
+cd file-duplicate-finder
+```
+
+2. Make the script executable (Unix/Linux/macOS):
+```bash
+chmod +x main.py
+```
+
+## 🔍 Usage
+
+```bash
+python main.py [directory] [options]
+```
