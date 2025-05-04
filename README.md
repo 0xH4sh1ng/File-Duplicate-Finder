@@ -17,7 +17,7 @@ A simple command-line tool to find and optionally remove duplicate files in your
 
 1. Clone this repository:
 ```bash
-git clone https://github.com/yourusername/file-duplicate-finder.git
+git clone https://github.com/0xH4sh1ng/file-duplicate-finder.git
 cd file-duplicate-finder
 ```
 
@@ -61,3 +61,79 @@ Display Options:
 Deletion Options:
 
 - `--keep`: Which file to keep when deleting duplicates (newest, oldest, first)
+
+## 📝 Examples
+
+### Find duplicates in current directory:
+```bash
+python main.py
+```
+
+### Find duplicates recursively in a specific directory:
+```bash
+python main.py ~/Downloads -r
+```
+
+### Find duplicates of specific file types:
+```bash
+python main.py /path/to/photos -r -e .jpg,.png,.gif
+```
+
+### Find large duplicate files:
+```bash
+python main.py --min-size 1048576 -r  # Files larger than 1MB
+```
+
+### Dry run to see what would be deleted:
+```bash
+python main.py -r --dry-run
+```
+
+### Delete duplicates keeping the newest version:
+```bash
+python main.py -r -d --keep newest
+```
+
+### Find duplicates by size only (faster):
+```bash
+python main.py -r --size-only
+```
+
+### Include hidden files in search:
+```bash
+python main.py -a
+```
+
+### Sort results by number of duplicates:
+```bash
+python main.py -r -s count
+```
+
+## 🔧 How It Works
+
+The tool uses a multi-step approach to find duplicates efficiently:
+
+1. **Size Grouping**: First groups files by size (files of different sizes can't be duplicates)
+2. **Hash Calculation**: For files of the same size, calculates MD5 hash to verify content
+3. **Comparison**: Files with the same hash are true duplicates
+4. **Caching**: Stores hashes to speed up subsequent scans
+
+### Deletion Strategy
+
+When deleting duplicates, you can choose which file to keep:
+- `newest`: Keep the most recently modified file
+- `oldest`: Keep the oldest file
+- `first`: Keep the first file encountered in the scan
+
+## 💡 Tips
+
+- Use `--dry-run` before actually deleting files
+- For large directories, the first run may take time but subsequent runs will be faster due to caching
+- Use `--size-only` for quick scans when you don't need perfect accuracy
+- The cache file (`.dup_cache.json`) can be safely deleted to start fresh
+- For photo/video files, use appropriate extensions to focus the search
+- When deleting, choose the retention strategy that makes sense for your use case
+
+## 📄 License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
