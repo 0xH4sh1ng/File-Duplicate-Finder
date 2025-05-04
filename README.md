@@ -31,3 +31,33 @@ chmod +x main.py
 ```bash
 python main.py [directory] [options]
 ```
+
+## ⚙️ Options
+
+Basic Options:
+
+- `directory`: Directory to search (default: current directory)
+- `-r, --recursive`: Search recursively in subdirectories
+- `-d, --delete`: Delete duplicate files
+- `--dry-run`: Show what would be deleted without actually deleting
+
+Filtering Options:
+
+- `--min-size`: Minimum file size in bytes
+- `--max-size`: Maximum file size in bytes
+- `-e, --extensions`: Comma-separated list of file extensions (e.g., .jpg,.png)
+- `-a, --include-hidden`: Include hidden files and directories
+
+Hash Options:
+
+- `--no-hash`: Don't use hash comparison (faster but less accurate)
+- `--size-only`: Compare files by size only
+- `--no-cache`: Don't use or create hash cache
+
+Display Options:
+
+- `-s, --sort`: Sort duplicates by size or count
+
+Deletion Options:
+
+- `--keep`: Which file to keep when deleting duplicates (newest, oldest, first)
